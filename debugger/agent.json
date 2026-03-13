@@ -1,0 +1,15 @@
+{
+  "id": "debugger",
+  "identity": {
+    "name": "Debug Master"
+  },
+  "workspace": "/home/work/.openclaw/workspace/agents/debugger",
+  "model": {
+    "primary": "aliyun/qwen3-coder-plus",
+    "fallbacks": [
+      "minimax/MiniMax-M2.5-highspeed",
+      "tencent/hunyuan-2.0-thinking",
+      "aliyun/qwen3.5-plus"
+    ]
+  }
+}
