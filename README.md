@@ -1,3 +1,5 @@
+[English] | [中文](README_CN.md)
+
 # OpenClaw Debug Master Agent
 
 <div align="center">
