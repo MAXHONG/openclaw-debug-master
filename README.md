@@ -403,3 +403,59 @@ If you find this project useful, please consider giving it a ⭐!
 [⬆ Back to Top](#openclaw-debug-master-agent)
 
 </div>
+
+## Model Configuration
+
+Debug Master supports multiple models. Here's how to configure them:
+
+### Configuration Methods
+
+#### Method 1: Via agent.json
+
+Edit `agent/agent.json`:
+
+```json
+{
+  "id": "debugger",
+  "name": "Debug Master", 
+  "model": {
+    "primary": "qwen3-coder-plus",
+    "fallbacks": [
+      "minimax/MiniMax-M2.5-highspeed",
+      "tencent/hunyuan-2.0-thinking"
+    ]
+  }
+}
+```
+
+#### Method 2: Via OpenClaw CLI
+
+```bash
+# List available models
+openclaw models list
+
+# Set model for Debug Master
+openclaw agents set-model debugger --model qwen3-coder-plus
+```
+
+### Recommended Models
+
+| Model | Use Case |
+|-------|----------|
+| `qwen3-coder-plus` | ✅ Recommended - Best for coding/diagnostics |
+| `minimax/MiniMax-M2.5-highspeed` | Fast, cheap |
+| `anthropic/claude-sonnet-4-20250514` | Most capable |
+
+### Environment Variables
+
+```bash
+export OPENAI_API_KEY="your-key"
+export OPENAI_BASE_URL="https://api.openai.com/v1"
+```
+
+### Verify Configuration
+
+```bash
+cd ~/.openclaw/workspace/agents/debugger
+bash test-debugger.sh
+```

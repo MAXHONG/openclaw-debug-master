@@ -86,3 +86,74 @@ MIT License
 ---
 
 由 [Max Hong](https://github.com/MAXHONG) 开发和维护
+
+## 模型配置
+
+Debug Master 支持多种模型，您可以根据需要选择和配置。
+
+### 配置方法
+
+#### 方法一：通过 agent.json 配置
+
+编辑 `agent/agent.json` 文件：
+
+```json
+{
+  "id": "debugger",
+  "name": "Debug Master",
+  "model": {
+    "primary": "qwen3-coder-plus",
+    "fallbacks": [
+      "minimax/MiniMax-M2.5-highspeed",
+      "tencent/hunyuan-2.0-thinking"
+    ]
+  }
+}
+```
+
+#### 方法二：通过 OpenClaw 命令行配置
+
+```bash
+# 查看可用模型
+openclaw models list
+
+# 设置 Debug Master 使用的模型
+openclaw agents set-model debugger --model qwen3-coder-plus
+```
+
+### 推荐模型
+
+| 模型 | 特点 | 适用场景 |
+|------|------|----------|
+| `qwen3-coder-plus` | 编程能力强，性价比高 | ✅ 推荐 |
+| `minimax/MiniMax-M2.5-highspeed` | 速度快，便宜 | 简单诊断 |
+| `anthropic/claude-sonnet-4-20250514` | 能力强 | 复杂问题 |
+| `tencent/hunyuan-2.0-thinking` | 国产模型 | 国内用户 |
+
+### 环境变量配置
+
+如果使用第三方模型 API，需要设置环境变量：
+
+```bash
+# OpenAI 格式 API
+export OPENAI_API_KEY="your-api-key"
+export OPENAI_BASE_URL="https://api.openai.com/v1"
+
+# Azure OpenAI
+export AZURE_OPENAI_API_KEY="your-key"
+export AZURE_OPENAI_ENDPOINT="https://your-resource.openai.azure.com/"
+
+# Anthropic
+export ANTHROPIC_API_KEY="your-key"
+```
+
+### 验证配置
+
+配置完成后，运行测试验证：
+
+```bash
+cd ~/.openclaw/workspace/agents/debugger
+bash test-debugger.sh
+```
+
+如果测试通过，说明模型配置成功！
